@@ -1,0 +1,62 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rake
+  - rubocop-migration
+  - rubocop-factory_bot
+  - rubocop-faker
+
+# General configuration for all cops
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
+  SuggestExtensions: false
+  Exclude:
+    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'bin/*'
+    - 'vendor/**/*'
+
+# Rails-related cops
+Rails:
+  Enabled: true
+
+# Migration-related cops
+Migration/AddCheckConstraint:
+  Enabled: true
+
+# Performance-related cops
+Performance:
+  Enabled: true
+
+# RSpec-related cops
+RSpec:
+  Enabled: true
+
+# Rake-related cops
+Rake:
+  Enabled: true
+
+# FactoryBot-related cops
+FactoryBot:
+  Enabled: true
+
+# Faker-related cops
+Faker:
+  Enabled: true
+
+# Custom cops
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Metrics/MethodLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 4
