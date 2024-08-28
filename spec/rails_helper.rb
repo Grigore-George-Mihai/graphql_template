@@ -13,7 +13,7 @@ require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Load all configuration files in spec/support
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file unless file.include?("simplecov_config.rb") }
+Rails.root.glob("spec/support/**/*.rb").each { |file| require file unless file.to_s.include?("simplecov_config.rb") }
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
