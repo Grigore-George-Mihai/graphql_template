@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 gem "bootsnap", require: false
 gem "kaminari"
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.2.1"
 gem "redis"
