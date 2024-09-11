@@ -14,7 +14,7 @@ gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Graphql
-gem "graphql", "~> 2.0"
+gem "graphql", "~> 2.3"
 
 group :development, :test do
   gem "byebug"
