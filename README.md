@@ -22,12 +22,20 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 
 - Update the project name to reflect your application.
 - Modify the [Scout APM](https://github.com/scoutapp/scout_apm_ruby) settings as needed, or remove them if application performance monitoring is not required.
-- Rename `.env.development.template` to `.env.development` and `.env.test.template` to `.env.test`. Populate these files with the appropriate environment-specific variables.
+- Run the following rake task to create your environment files:
+    ```bash
+    rake env:setup
+    ````
+  - After running the task, open the newly created .env.development and .env.test files to modify them with the appropriate environment-specific variables as needed.
+- Create DB and seed:
+    ```bash
+    rails db:create db:migrate db:seed
+    ````
 
 ## Gems
 
 ### API Framework
-- 
+- [GraphQL](https://github.com/rmosolgo/graphql-ruby): GraphQL implementation for Ruby, providing query execution and schema building tools.
 
 ### Pagination
 - [Kaminari](https://github.com/kaminari/kaminari): A scope and engine-based pagination library for Rails, Sinatra, and other Ruby frameworks.
@@ -69,13 +77,14 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 
 ## Rake Tasks
 
-Run the following rake task to check for security risks in your application:
+### Security Check
+- Run the following rake task to check for security risks in your application:
 
-```bash
-rake security:check
-```
+    ```bash
+    rake security:check
+    ```
 
-This task runs tools like Brakeman and Bundler Audit to ensure your application is secure.
+  - This task runs tools like Brakeman and Bundler Audit to ensure your application is secure.
 
 ## Contact
 For questions or further information, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/grigore-george-mihai-73981b86/).
