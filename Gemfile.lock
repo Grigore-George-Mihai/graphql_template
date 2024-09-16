@@ -111,7 +111,7 @@ GEM
     fiber-storage (1.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    graphql (2.3.15)
+    graphql (2.3.16)
       base64
       fiber-storage
     i18n (1.14.5)
@@ -339,7 +339,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
-  graphql (~> 2.0)
+  graphql (~> 2.3)
   kaminari
   pg (~> 1.1)
   puma (>= 5.0)
