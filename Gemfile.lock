@@ -95,9 +95,9 @@ GEM
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
     docile (1.4.1)
-    dotenv (3.1.2)
-    dotenv-rails (3.1.2)
-      dotenv (= 3.1.2)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
@@ -114,7 +114,7 @@ GEM
     graphql (2.3.16)
       base64
       fiber-storage
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
     irb (1.14.0)
@@ -176,7 +176,7 @@ GEM
     pg (1.5.8)
     psych (5.1.2)
       stringio
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.7)
@@ -270,7 +270,7 @@ GEM
       activesupport
       rubocop (>= 1.34)
       rubocop-rails (>= 2.24)
-    rubocop-performance (1.21.1)
+    rubocop-performance (1.22.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rails (2.26.1)
@@ -312,7 +312,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (2.5.0)
+    unicode-display_width (2.6.0)
     uniform_notifier (1.16.0)
     useragent (0.16.10)
     webrick (1.8.1)
