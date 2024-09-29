@@ -52,14 +52,7 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 - [Byebug](https://github.com/deivid-rodriguez/byebug): Debugging tool for Ruby applications.
 
 ### Code Quality & Linting
-- [Rubocop](https://github.com/rubocop/rubocop): Ruby static code analyzer.
-- [Rubocop Factory Bot](https://github.com/rubocop/rubocop-factory_bot): Enforces best practices for FactoryBot.
-- [Rubocop Faker](https://github.com/koic/rubocop-faker): Linter for using Faker.
-- [Rubocop Migration](https://github.com/r7kamura/rubocop-migration): Lints for Rails migrations.
-- [Rubocop Performance](https://github.com/rubocop/rubocop-performance): Performance-focused RuboCop checks.
-- [Rubocop Rails](https://github.com/rubocop/rubocop-rails): Rails-specific linting rules.
-- [Rubocop Rake](https://github.com/rubocop/rubocop-rake): Enforces best practices for Rake tasks.
-- [Rubocop RSpec](https://github.com/rubocop/rubocop-rspec): Linter for RSpec tests.
+- [Rubocop Rails Suite](https://github.com/Grigore-George-Mihai/rubocop-rails-suite): A custom suite that bundles Rubocop with various plugins for Rails projects.
 
 ### Testing
 - [Factory Bot Rails](https://github.com/thoughtbot/factory_bot_rails): Provides fixtures replacement with a straightforward definition syntax.

@@ -22,15 +22,7 @@ group :development, :test do
   gem "dotenv-rails"
 
   # Code Quality & Linting
-  gem "rubocop", require: false
-  # gem "rubocop-rails-omakase", require: false
-  gem "rubocop-factory_bot", require: false
-  gem "rubocop-faker", require: false
-  gem "rubocop-migration", require: false
-  gem "rubocop-performance", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-rake", require: false
-  gem "rubocop-rspec", require: false
+  gem "rubocop-rails-suite", require: false
 
   # Rspec
   gem "factory_bot_rails"
