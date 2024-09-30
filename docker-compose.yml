@@ -1,0 +1,60 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: >
+      bash -c '
+        rm -f tmp/pids/server.pid &&
+        bundle exec rails db:create &&
+        bundle exec rails db:migrate &&
+        bundle exec rails db:seed &&
+        bundle exec rails s -b 0.0.0.0 -p 3000
+      '
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/myapp_development
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - .:/rails
+      - /rails/tmp
+    depends_on:
+      - db
+      - redis
+      - sidekiq
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: >
+      bash -c '
+        bundle exec sidekiq
+      '
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=development
+    volumes:
+      - .:/rails
+    depends_on:
+      - redis
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myapp_development
+    ports:
+      - "5433:5432"
+
+  redis:
+    image: redis:6.2
+    ports:
+      - "6380:6379"

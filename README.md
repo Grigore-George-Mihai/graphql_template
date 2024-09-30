@@ -8,6 +8,7 @@ This repository serves as a default template for a Ruby on Rails (RoR) applicati
 - [Customize](#customize)
 - [Gems](#gems)
 - [Rake Tasks](#rake-tasks)
+- [Docker Setup](#docker-setup)
 - [Contact](#contact)
 
 ## Installation
@@ -79,6 +80,27 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
     ```
 
   - This task runs tools like Brakeman and Bundler Audit to ensure your application is secure.
+
+## Docker Setup
+- If you prefer to run the application inside a Docker container, follow these steps:
+
+1. **Build the Docker image:**
+
+    ```bash
+    docker-compose build
+    ```
+
+2. **Start the Application and services:**
+
+    ```bash
+    docker-compose up
+    ```
+
+3. **Stop the Application:**
+
+    ```bash
+    docker-compose down
+    ```
 
 ## Contact
 For questions or further information, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/grigore-george-mihai-73981b86/).

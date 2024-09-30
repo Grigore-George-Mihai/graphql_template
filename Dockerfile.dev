@@ -1,0 +1,36 @@
+# syntax = docker/dockerfile:1
+
+# Base Ruby version
+ARG RUBY_VERSION=3.3.4
+FROM docker.io/library/ruby:$RUBY_VERSION-slim
+
+# Set the working directory
+WORKDIR /rails
+
+# Install dependencies, including libpq-dev for PostgreSQL
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+    curl nodejs yarn libvips postgresql-client libsqlite3-dev libpq-dev redis-server \
+    build-essential libgmp-dev && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Set environment to development
+ENV RAILS_ENV="development" \
+    BUNDLE_PATH="/usr/local/bundle"
+
+# Install gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy application code (to be overridden by volume in docker-compose)
+COPY . .
+
+# Ensure permissions
+RUN chown -R 1000:1000 tmp log storage
+
+# Expose ports for the Rails server and Sidekiq
+EXPOSE 3000
+EXPOSE 6379
+
+# Start the Redis server and the Rails server for development
+CMD ["bash", "-c", "redis-server --daemonize yes && rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0' -p 3000"]

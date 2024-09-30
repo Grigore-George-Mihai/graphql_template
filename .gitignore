@@ -67,3 +67,6 @@ Thumbs.db
 *.iml
 *.ipr
 *.iws
+
+# Ignore Docker-related cache files (if any)
+.docker/
