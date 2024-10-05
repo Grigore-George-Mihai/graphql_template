@@ -22,7 +22,8 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 ## Customize
 
 - Update the project name to reflect your application.
-- Modify the [Scout APM](https://github.com/scoutapp/scout_apm_ruby) settings as needed, or remove them if application performance monitoring is not required.
+- Modify the [Scout APM](https://github.com/scoutapp/scout_apm_ruby) settings as needed, or remove it if performance tracking is not required.
+- Modify the [Rollbar](https://github.com/rollbar/rollbar-gem) settings as needed, or remove it if error tracking is not required.
 - Run the following rake task to create your environment files:
     ```bash
     rake env:setup
@@ -48,6 +49,9 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 ### Performance Monitoring
 - [Scout APM](https://github.com/scoutapp/scout_apm_ruby): Application monitoring tool.
 - [Bullet](https://github.com/flyerhzm/bullet): Detects N+1 queries and unused eager loading.
+
+### Error Tracking
+- [Rollbar](https://github.com/rollbar/rollbar-gem): Real-time error tracking and reporting.
 
 ### Debugging
 - [Byebug](https://github.com/deivid-rodriguez/byebug): Debugging tool for Ruby applications.
