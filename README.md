@@ -40,7 +40,7 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 - [GraphQL](https://github.com/rmosolgo/graphql-ruby): GraphQL implementation for Ruby, providing query execution and schema building tools.
 
 ### Pagination
-- [Kaminari](https://github.com/kaminari/kaminari): A scope and engine-based pagination library for Rails, Sinatra, and other Ruby frameworks.
+- [Pagy](https://github.com/ddnexus/pagy): A fast, efficient, and lightweight pagination gem for Rails, providing easy customization and flexibility with minimal overhead.
 
 ### Background Processing
 - [Sidekiq](https://github.com/mperham/sidekiq): Efficient background processing for Ruby applications.

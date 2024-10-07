@@ -2,8 +2,10 @@
 
 source "https://rubygems.org"
 
+gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
-gem "kaminari"
+gem "jwt"
+gem "pagy"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.2.1"
@@ -13,7 +15,8 @@ gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Graphql
-gem "graphql", "~> 2.3"
+gem "graphiql-rails"
+gem "graphql"
 
 # Performance and Error Tracking
 gem "rollbar"
