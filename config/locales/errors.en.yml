@@ -1,0 +1,13 @@
+en:
+  errors:
+    status:
+      not_found: "Not Found"
+      bad_request: "Bad Request"
+      unprocessable_entity: "Unprocessable Entity"
+      internal_server_error: "Internal Server Error"
+      token_expired: "Token has expired"
+      token_decode_error: "Token decode error"
+      token_verification_failed: "Token verification failed"
+    messages:
+      invalid_email: "must be a valid email address"
+      password_complexity: "must include at least one special character (!@#$%^&*)"

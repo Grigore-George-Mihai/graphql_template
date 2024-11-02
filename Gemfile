@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
 gem "bcrypt", "~> 3.1.7"
@@ -26,7 +24,6 @@ gem "rollbar"
 gem "scout_apm"
 
 group :development, :test do
-  gem "byebug"
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "dotenv-rails"
 

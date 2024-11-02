@@ -1,28 +1,40 @@
 # frozen_string_literal: true
 
 class JwtService
-  SECRET_KEY = Rails.application.credentials.secret_key_base || ENV.fetch("SECRET_KEY_BASE") { raise "Secret key base not configured" }
+  JWT_SECRET = ENV.fetch("JWT_SECRET") { raise "JWT_SECRET is not set! Please configure it in the environment." }
 
-  def self.encode(payload, exp = 24.hours.from_now)
-    payload[:exp] = exp.to_i
-    JWT.encode(payload, SECRET_KEY, "HS256")
-  end
+  class << self
+    def encode(payload, exp = 24.hours.from_now)
+      payload[:exp] = exp.to_i
+      JWT.encode(payload, JWT_SECRET, "HS256")
+    end
 
-  def self.decode(token)
-    body = JWT.decode(token, SECRET_KEY, true, algorithm: "HS256")[0]
-    payload = ActiveSupport::HashWithIndifferentAccess.new(body)
+    def authenticate(headers)
+      token = extract_bearer_token(headers)
+      payload = decode(token)
 
-    raise ErrorHandler::JwtVerificationError, "Invalid JTI in JWT token" unless valid_jti?(payload)
+      user = User.find_by(id: payload[:user_id])
+      raise ErrorHandler::JwtVerificationError unless user&.jti == payload[:jti]
 
-    payload
-  rescue JWT::ExpiredSignature
-    raise ErrorHandler::JwtExpiredError
-  rescue JWT::DecodeError => e
-    raise ErrorHandler::JwtDecodeError, e.message
-  end
+      user
+    end
 
-  def self.valid_jti?(payload)
-    user = User.find_by(id: payload[:user_id])
-    user&.jti == payload[:jti]
+    private
+
+    def extract_bearer_token(headers)
+      auth_header = headers["Authorization"]
+      raise ErrorHandler::JwtDecodeError unless auth_header&.start_with?("Bearer ")
+
+      auth_header.split.last
+    end
+
+    def decode(token)
+      body = JWT.decode(token, JWT_SECRET, true, algorithm: "HS256")[0]
+      ActiveSupport::HashWithIndifferentAccess.new(body)
+    rescue JWT::ExpiredSignature
+      raise ErrorHandler::JwtExpiredError
+    rescue JWT::DecodeError
+      raise ErrorHandler::JwtDecodeError
+    end
   end
 end
