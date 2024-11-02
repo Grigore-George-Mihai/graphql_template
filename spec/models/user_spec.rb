@@ -39,6 +39,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "Enums" do
+    it "defines roles with correct values" do
+      expect(described_class.roles).to eq("user" => 0, "admin" => 1)
+    end
+  end
+
   describe "jti handling" do
     context "when a user is created" do
       it "generates a unique jti" do

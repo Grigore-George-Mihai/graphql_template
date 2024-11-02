@@ -10,9 +10,12 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rails", "~> 7.2.1"
 gem "redis"
-gem "sidekiq"
 gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
+
+# BackgroundJob and Scheduling
+gem "sidekiq"
+gem "sidekiq-scheduler"
 
 # Graphql
 gem "graphiql-rails"

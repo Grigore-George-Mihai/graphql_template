@@ -6,6 +6,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :set_jti
 
+  enum :role, { user: 0, admin: 1 }
+
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: I18n.t("errors.messages.invalid_email") }
   validates :password, presence: true, length: { minimum: 6 },

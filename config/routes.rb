@@ -1,8 +1,18 @@
+require "sidekiq/web"
+
+Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+  username == ENV.fetch("SIDEKIQ_USERNAME", "admin") && password == ENV.fetch("SIDEKIQ_PASSWORD", "password")
+end
+
 Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
 
-  if Rails.env.development? || Rails.env.staging?
-    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if Rails.env.development?
+
+  if Rails.env.development? || Rails.env.production?
+    Sidekiq::Web.use ActionDispatch::Cookies
+    Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: ENV.fetch("SIDEKIQ_SESSION_KEY", "_your_app_session")
+    mount Sidekiq::Web => "/sidekiq"
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

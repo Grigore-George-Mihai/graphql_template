@@ -10,13 +10,18 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-unless User.exists?
-  FactoryBot.create(
-    :user,
-    first_name: "default",
-    last_name: "user",
-    email: ENV.fetch("DEFAULT_USER_EMAIL", nil),
-    password: ENV.fetch("DEFAULT_USER_PASSWORD", nil),
-    password_confirmation: ENV.fetch("DEFAULT_USER_PASSWORD", nil)
-  )
+User.find_or_create_by!(email: ENV.fetch("DEFAULT_USER_EMAIL", "user@example.com")) do |user|
+  user.first_name = "Normal"
+  user.last_name = "User"
+  user.password = ENV.fetch("DEFAULT_USER_PASSWORD", "UserPassword123!")
+  user.password_confirmation = ENV.fetch("DEFAULT_USER_PASSWORD", "UserPassword123!")
+  user.role = :user
+end
+
+User.find_or_create_by!(email: ENV.fetch("DEFAULT_ADMIN_EMAIL", "admin@example.com")) do |user|
+  user.first_name = "Admin"
+  user.last_name = "User"
+  user.password = ENV.fetch("DEFAULT_ADMIN_PASSWORD", "AdminPassword123!")
+  user.password_confirmation = ENV.fetch("DEFAULT_ADMIN_PASSWORD", "AdminPassword123!")
+  user.role = :admin
 end
