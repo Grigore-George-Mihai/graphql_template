@@ -54,6 +54,7 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      SECRET_KEY_BASE: 75453499f36909224a00fe48a24577d41328d75731bfe1ff30ba045c51a82fabd64968af5350919dbbc6b8fec5996c0c4d3d51cc5ad24bb40e4bd9619cb1ea98
 
     steps:
       - name: Install packages
