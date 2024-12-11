@@ -53,9 +53,6 @@ git clone https://github.com/Grigore-George-Mihai/graphql_template
 ### Error Tracking
 - [Rollbar](https://github.com/rollbar/rollbar-gem): Real-time error tracking and reporting.
 
-### Debugging
-- [Byebug](https://github.com/deivid-rodriguez/byebug): Debugging tool for Ruby applications.
-
 ### Code Quality & Linting
 - [Rubocop Rails Suite](https://github.com/Grigore-George-Mihai/rubocop-rails-suite): A custom suite that bundles Rubocop with various plugins for Rails projects.
 
