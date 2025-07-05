@@ -6,7 +6,7 @@ class User < ApplicationRecord
   normalizes :email, with: ->(email) { email.downcase.strip }
   before_create -> { self.jti ||= SecureRandom.uuid }
 
-  enum :role, { user: 0, admin: 1 }, validate: true
+  enum :role, %i[user admin], validate: true
 
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: I18n.t("errors.messages.invalid_email") }
