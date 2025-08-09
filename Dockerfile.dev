@@ -1,18 +1,19 @@
 # syntax = docker/dockerfile:1
 
 # Base Ruby version
-ARG RUBY_VERSION=3.3.4
+ARG RUBY_VERSION=3.3.9
 FROM docker.io/library/ruby:$RUBY_VERSION-slim
 
 # Set the working directory
 WORKDIR /rails
 
-# Install dependencies, including libpq-dev for PostgreSQL
+# Install dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    curl nodejs yarn libvips postgresql-client libsqlite3-dev libpq-dev redis-server \
-    build-essential libgmp-dev && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+      curl nodejs yarn libvips postgresql-client libsqlite3-dev libpq-dev redis-server \
+      build-essential libgmp-dev \
+      pkg-config libyaml-dev libyaml-0-2 \
+    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set environment to development
 ENV RAILS_ENV="development" \
