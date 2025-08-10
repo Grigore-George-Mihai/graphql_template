@@ -7,16 +7,16 @@ assignees: Grigore-George-Mihai
 
 ---
 
-## Description
+### Description
 A brief description of the issue.
 
-## Steps to Reproduce
+### Steps to Reproduce
 1. 
 2. 
 3. 
 
-## Expected Behavior
+### Expected Behavior
 What did you expect to happen?
 
-## Actual Behavior
+### Actual Behavior
 What actually happened?

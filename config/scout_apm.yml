@@ -1,16 +1,15 @@
 common: &defaults
-  monitor: true
+  monitor: <%= ENV["SCOUT_KEY"].present? %>
   log_level: debug
-  key: <%= ENV.fetch("SCOUT_KEY", nil) %>
-  name: <%= ENV.fetch("SCOUT_NAME", "GraphqlTemplate") %>
+  key: <%= ENV["SCOUT_KEY"].present? %>
+  name: <%= ENV["SCOUT_NAME"].presence || "GraphqlTemplate" %>
 
 production:
   <<: *defaults
 
 development:
   <<: *defaults
-  monitor: false
-  dev_trace: false
+  monitor: true
 
 test:
   <<: *defaults

@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: graphql_template_production
-  username: graphql_template
-  password: <%= ENV["GRAPHQL_TEMPLATE_DATABASE_PASSWORD"] %>
+  username: <%= ENV["PROD_DATABASE_USERNAME"] %>
+  password: <%= ENV["PROD_DATABASE_PASSWORD"] %>
