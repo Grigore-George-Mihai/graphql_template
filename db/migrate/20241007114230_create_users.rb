@@ -6,11 +6,13 @@ class CreateUsers < ActiveRecord::Migration[7.2]
       t.string :email, null: false
       t.string :password_digest
       t.string :jti, null: false
+      t.integer :role, null: false, default: 0
 
       t.timestamps
     end
 
     add_index :users, "LOWER(email)", unique: true
     add_index :users, :jti, unique: true
+    add_index :users, :role
   end
 end

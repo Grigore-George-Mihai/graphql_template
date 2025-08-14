@@ -22,13 +22,13 @@ namespace :setup do
     files = %w[
       .ruby-gemset
       .env.development.template
-      app/views/layouts/application.html.erb
       app/views/pwa/manifest.json.erb
+      app/controllers/graphql_controller.rb
+      app/graphql/graphql_template_schema.rb
       config/application.rb
       config/cable.yml
       config/database.yml
       config/environments/production.rb
-      config/initializers/active_admin.rb
       config/scout_apm.yml
       docker-compose.yml
     ]

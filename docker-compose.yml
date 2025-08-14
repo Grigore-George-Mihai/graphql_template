@@ -26,29 +26,39 @@ services:
       - .:/rails
       - /rails/tmp
     depends_on:
-      - db
-      - redis
-      - sidekiq
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
 
   sidekiq:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: >
-      bash -c '
-        bundle exec sidekiq
-      '
+    command: bundle exec sidekiq
     environment:
       - RAILS_ENV=development
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/graphql_template_development
       - REDIS_SIDEKIQ_URL=redis://redis:6379/1
     volumes:
       - .:/rails
     depends_on:
-      - redis
-      - db
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
 
   db:
-    image: postgres:13
+    image: postgres:14
+    command: >
+      postgres
+        -c shared_preload_libraries=pg_stat_statements
+        -c pg_stat_statements.track=all
+        -c pg_stat_statements.max=10000
+        -c track_activity_query_size=2048
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -57,6 +67,12 @@ services:
       - "5433:5432"
     volumes:
       - graphql_template_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d graphql_template_development"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
 
   redis:
     image: redis:7

@@ -5,7 +5,7 @@ inherit_gem:
 
 # Specify your Ruby version
 AllCops:
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.4
 
 # Custom
 Rails/EnumHash:

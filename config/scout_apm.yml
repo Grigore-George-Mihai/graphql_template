@@ -1,7 +1,7 @@
 common: &defaults
   monitor: <%= ENV["SCOUT_KEY"].present? %>
   log_level: debug
-  key: <%= ENV["SCOUT_KEY"].present? %>
+  key: <%= ENV["SCOUT_KEY"].presence %>
   name: <%= ENV["SCOUT_NAME"].presence || "GraphqlTemplate" %>
 
 production:
