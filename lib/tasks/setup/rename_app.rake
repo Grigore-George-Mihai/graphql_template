@@ -7,16 +7,27 @@ namespace :setup do
     new_title = $stdin.gets&.strip.to_s
     abort("❌ App name cannot be empty!") if new_title.empty?
 
-    new_snake = new_title.parameterize(separator: "_")
-    new_camel = new_title.delete(" ")
+    old_title       = Rails.application.name.titleize
+    old_title_camel = old_title.delete(" ")
+    old_title_snake = old_title.parameterize(separator: "_")
 
-    puts "Using:\n  Title : #{new_title}\n  snake : #{new_snake}\n  Camel : #{new_camel}"
+    new_title       = new_title.titleize
+    new_title_camel = new_title.delete(" ")
+    new_title_snake = new_title.parameterize(separator: "_")
+
+    puts "Using:\n  Title : #{new_title}\n  snake : #{new_title_snake}\n  Camel : #{new_title_camel}"
 
     replace_patterns = [
-      [/\bGraphql Template\b/, new_title], # Title Case
-      [/\bGraphqlTemplate\b/,  new_camel], # CamelCase
-      [/\bgraphql_template\b/, new_snake], # snake_case (strict)
-      [/graphql_template/,     new_snake] # snake_case (loose)
+      # Title Case (strict word boundaries)
+      [/\b#{Regexp.escape(old_title)}\b/, new_title],
+
+      # CamelCase
+      [/\b#{Regexp.escape(old_title_camel)}\b/, new_title_camel],
+      [/#{Regexp.escape(old_title_camel)}/, new_title_camel],
+
+      # snake_case
+      [/\b#{Regexp.escape(old_title_snake)}\b/, new_title_snake],
+      [/#{Regexp.escape(old_title_snake)}/, new_title_snake]
     ]
 
     files = %w[
