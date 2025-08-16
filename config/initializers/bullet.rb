@@ -1,11 +1,20 @@
-if defined?(Bullet)
-  Bullet.enable = true
-  Bullet.bullet_logger = true
-  Bullet.console = true
-  Bullet.rails_logger = true
-  Bullet.add_footer = true
+Rails.application.configure do
+  config.after_initialize do
+    next unless defined?(Bullet) && Rails.env.local?
 
-  Bullet.alert = true if Rails.env.development?
+    Bullet.enable        = true
+    Bullet.bullet_logger = true
+    Bullet.rails_logger  = true
 
-  Bullet.raise = true if Rails.env.test?
+    if Rails.env.development?
+      Bullet.console     = true
+      Bullet.alert       = true
+      Bullet.add_footer  = true
+    end
+
+    if Rails.env.test?
+      Bullet.raise       = true
+      # Bullet.rollbar  = true
+    end
+  end
 end

@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# Early Loading of SimpleCov
-require "support/simplecov_config"
-
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"
 ENV["RAILS_ENV"] ||= "test"
@@ -11,9 +8,6 @@ require_relative "../config/environment"
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
-
-# Load all configuration files in spec/support
-Rails.root.glob("spec/support/**/*.rb").each { |file| require file unless file.to_s.include?("simplecov_config.rb") }
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -28,7 +22,7 @@ Rails.root.glob("spec/support/**/*.rb").each { |file| require file unless file.t
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Rails.root.glob('spec/support/**/*.rb').sort.each { |f| require f }
+Rails.root.glob("spec/support/**/*.rb").sort_by(&:to_s).each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -70,6 +64,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # Include helpers
-  config.include HelpersConfig
+  config.include HelpersConfig, type: :request
 end

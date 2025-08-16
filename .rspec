@@ -1,1 +1,2 @@
+--require support/simplecov_config
 --require spec_helper
