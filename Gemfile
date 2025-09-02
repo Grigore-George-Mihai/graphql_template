@@ -38,12 +38,13 @@ group :development, :test do
   # Security
   gem "brakeman", require: false
   gem "bundler-audit", require: false
-end
 
-group :development do
   # Performance
   gem "bullet"
 end
+
+# group :development do
+# end
 
 group :test do
   gem "rspec-sidekiq"
