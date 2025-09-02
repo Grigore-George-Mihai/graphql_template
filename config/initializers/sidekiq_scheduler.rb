@@ -1,3 +1,5 @@
+require "sidekiq-scheduler"
+
 Sidekiq.configure_server do |config|
   config.on(:startup) do
     if Rails.env.test?
