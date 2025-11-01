@@ -321,8 +321,8 @@ GEM
     scout_apm (5.7.1)
       parser
     securerandom (0.4.1)
-    shoulda-matchers (6.5.0)
-      activesupport (>= 5.2.0)
+    shoulda-matchers (7.0.1)
+      activesupport (>= 7.1)
     sidekiq (8.0.8)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
