@@ -318,7 +318,7 @@ GEM
     ruby-progressbar (1.13.0)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
-    scout_apm (5.7.1)
+    scout_apm (5.8.0)
       parser
     securerandom (0.4.1)
     shoulda-matchers (6.5.0)
