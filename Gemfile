@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.22"
 gem "bootsnap", require: false
 gem "jwt"
 gem "pagy"
