@@ -181,7 +181,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.2-x86_64-linux-gnu)
       racc (~> 1.4)
-    pagy (43.5.1)
+    pagy (43.5.3)
       json
       uri
       yaml
